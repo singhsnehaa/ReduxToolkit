@@ -48,17 +48,20 @@ const TodoList = () => {
       </View>
 
       {todoList.map(todo => (
-        <View style={styles.listWrap2} key={todo.id}>
+        <View
+          style={[
+            styles.listWrap2,
+            {
+              backgroundColor: todo.isCompleted ? 'lightgreen' : 'pink',
+            },
+          ]}
+          key={todo.id}>
           <TouchableOpacity
             onPress={() => toggleTodoItem(todo.id)}
-            style={[
-              styles.listWrp,
-              {
-                backgroundColor: todo.isCompleted ? 'lightgreen' : 'pink',
-              },
-            ]}>
-            <Text>{todo.title}</Text>
+            style={styles.listWrp}>
+            <Text style={styles.title}>{todo.title}</Text>
           </TouchableOpacity>
+
           <TouchableOpacity onPress={() => deleteTodoItem(todo.id)}>
             <Text style={styles.plusBtn}>X</Text>
           </TouchableOpacity>
@@ -77,35 +80,42 @@ const styles = StyleSheet.create({
     color: 'purple',
     alignItems: 'center',
     alignSelf: 'center',
-    marginVertical: 14
+    marginVertical: 14,
   },
   listWrap2: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 10,
+    width: '88%',
+    backgroundColor: 'pink',
+    alignSelf: 'center',
+    height: 42,
+    marginBottom: 10,
   },
   listWrp: {
-    borderWidth: 1,
-    padding: 10,
     flex: 0.8,
-    backgroundColor: 'pink',
+    marginTop: 8,
+  },
+  title: {
+    fontSize: 15,
+    color: 'black',
   },
   plusBtn: {
-    fontWeight: '600',
+    fontWeight: '400',
     fontSize: 16,
     color: 'red',
-    marginRight: 10,
     marginTop: 8,
   },
   addsBtn: {
-    fontWeight: '600',
+    fontWeight: '400',
     fontSize: 24,
-    color: 'green',
-    marginRight: 7,
     marginTop: 2,
+    borderWidth: 1,
+    backgroundColor: 'pink',
+    paddingHorizontal: 13,
   },
   inputWrp: {
-    marginHorizontal: 15,
+    marginHorizontal: 20,
     marginVertical: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
