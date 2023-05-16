@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -11,24 +11,35 @@ import {
   deleteTodo,
   addTodo,
   toggleTodo,
+  getTodos,
+  updateTodos
 } from '../redux/features/todo/todoSlice';
 
 const TodoList = () => {
   const [title, setTitle] = useState('Aruuu');
   const dispatch = useDispatch();
-  const todoList = useSelector(state => state.todos);
+  const {todoResponse, isLoading, message} = useSelector(state => state.todos);
+
+  useEffect(() => {
+    dispatch(getTodos());
+  }, []);
 
   const deleteTodoItem = todoId => {
-    dispatch(deleteTodo({todoId}));
+    dispatch(deleteTodo(todoId));
     setTitle('');
   };
 
   const addTodoItem = () => {
-    dispatch(addTodo({title}));
+    const body = {
+      todo: title,
+      completed: false,
+      userId: 1,
+    };
+    dispatch(addTodo(body));
   };
 
   const toggleTodoItem = todoId => {
-    dispatch(toggleTodo({todoId}));
+    dispatch(updateTodos(todoId));
   };
 
   return (
@@ -47,19 +58,19 @@ const TodoList = () => {
         </TouchableOpacity>
       </View>
 
-      {todoList.map(todo => (
+      {todoResponse.map(todo => (
         <View
           style={[
             styles.listWrap2,
             {
-              backgroundColor: todo.isCompleted ? 'lightgreen' : 'pink',
+              backgroundColor: todo?.completed ? 'lightgreen' : 'pink',
             },
           ]}
-          key={todo.id}>
+          key={todo?.id}>
           <TouchableOpacity
-            onPress={() => toggleTodoItem(todo.id)}
+            onPress={() => toggleTodoItem(todo?.id)}
             style={styles.listWrp}>
-            <Text style={styles.title}>{todo.title}</Text>
+            <Text style={styles.title}>{todo?.todo}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => deleteTodoItem(todo.id)}>
@@ -89,12 +100,11 @@ const styles = StyleSheet.create({
     width: '88%',
     backgroundColor: 'pink',
     alignSelf: 'center',
-    height: 42,
     marginBottom: 10,
   },
   listWrp: {
     flex: 0.8,
-    marginTop: 8,
+    marginVertical: 8,
   },
   title: {
     fontSize: 15,
