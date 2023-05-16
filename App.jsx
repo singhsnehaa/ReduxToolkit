@@ -1,15 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import {StyleSheet} from 'react-native';
+import RootNavigator from './src/navigator/RootNavigator';
 
 const App = () => {
   return (
-    <NavigationContainer>{/* Rest of your app code */}
-     <View style={styles.container}>
-        <Text>Sneha</Text>
-      </View>
-    </NavigationContainer>
-     
+    <>
+      <RootNavigator />
+    </>
   );
 };
 
@@ -18,8 +15,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flex: 1,
     justifyContent: 'center',
-    // marginTop:12,
-    
   },
 });
 
