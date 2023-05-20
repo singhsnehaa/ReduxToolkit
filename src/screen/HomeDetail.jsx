@@ -4,6 +4,7 @@ import {View,Text,StyleSheet} from 'react-native';
 export const HomeDetail = ({navigation})=>{
     return (
         <View style={styles.container}>
+             <Text>HomeDetail Screen</Text>
             <Text onPress={() => navigation.goBack()}> Back to Home Screen</Text>
         </View>
     )
