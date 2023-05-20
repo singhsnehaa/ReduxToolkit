@@ -2,11 +2,11 @@ import React from 'react';
 
 import {View,Text,StyleSheet} from 'react-native';
 
-const UserDetail = ()=>{
+export const Profile = ()=>{
     return (
         <View style={styles.container}>
             <Text>
-                UserDetail Screen
+                Profile Screen
             </Text>
         </View>
     )
@@ -22,4 +22,3 @@ const styles = StyleSheet.create({
     },
   });
   
-export default UserDetail;

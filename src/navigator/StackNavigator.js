@@ -1,24 +1,22 @@
 import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Home, HomeDetail } from '../screen';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import UserList from '../screen/user/UserList';
-import UserDetail from '../screen/user/Userdetail';
+const navOptions = {
+  headerShow: false
+};
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator initialRouteName="UserList">
-      <Stack.Screen
-        name="UserList"
-        component={UserList}
-        // options={{header: () => null}}
-      />
+    <Stack.Navigator screenOptions={navOptions}>
+      <Stack.Screen name="Home" component={Home} options={navOptions} />
 
       <Stack.Screen
-        name="UserDetail"
-        component={UserDetail}
-        // options={{header: () => null}}
+        name="HomeDetail"
+        component={HomeDetail}
+        options={navOptions}
       />
     </Stack.Navigator>
   );
