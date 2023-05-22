@@ -10,6 +10,9 @@ export const Home = () => {
       <TouchableOpacity onPress={() => navigation.navigate('HomeDetail')}>
        <Text> Go to HomeDetail Screen</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.openDrawer()}>
+       <Text> Go to Drawer Navigation</Text>
+      </TouchableOpacity>
     </View>
   );
 };
