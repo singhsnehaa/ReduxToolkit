@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     color: 'purple',
     alignItems: 'center',
     alignSelf: 'center',
-    marginVertical: 14,
+    marginTop: 30,
+    // marginBottom: 14,
   },
   listWrap2: {
     flexDirection: 'row',
